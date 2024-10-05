@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Fan Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="banner-text">
+                <a href="#" class="brand-logo center">Anime Fan Tracker</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Anime List</h2>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="anime-name" type="text">
+                <label for="anime-name">Anime Name</label>
+            </div>
+        </div>
+        <div class="row" id="anime-list">
+            <!-- Anime cards will go here -->
+        </div>
+        <button class="btn-floating btn-large red" id="add-anime-btn">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="status-modal" class="modal">
+        <div class="modal-content">
+            <h4>Update Status</h4>
+            <div class="input-field col s12">
+                <select id="anime-status">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Watched">Watched</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Dropped">Dropped</option>
+                    <option value="Plan to Watch">Plan to Watch</option>
+                </select>
+                <label for="anime-status">Status</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="save-status-btn">Save</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
