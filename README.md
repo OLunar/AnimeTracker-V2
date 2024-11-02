@@ -36,3 +36,4 @@ A Progressive Web App (PWA) to track your favorite anime effortlessly.
 
 Feel free to submit pull requests or open issues if you find bugs or want to contribute!
 
+AnimeWatchlist-V2
