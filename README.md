@@ -37,6 +37,10 @@ A Progressive Web App (PWA) to track your favorite anime effortlessly.
 - MaterializeCSS
 - Service Worker
 
+### Caching Strategy
+- **Cache on install**: Pre-caching the main assets during the service worker installation phase.
+- **Fetch event handling**: Serving cached assets and updating the cache with new assets fetched from the network.  
+
 ## Contributing
 
 Feel free to submit pull requests or open issues if you find bugs or want to contribute!
