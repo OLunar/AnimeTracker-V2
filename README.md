@@ -5,8 +5,13 @@ A Progressive Web App (PWA) to track your favorite anime effortlessly.
 ## Features
 
 - Add and categorize anime as "Watched," "In Progress," "Dropped," or "Plan to Watch"
+- View your lists on seperate tabs depending on where you categorized the show. 
 - Offline support with service worker
 - Responsive design with MaterializeCSS
+
+## Updates 
+- Created an offline.html
+- Made it more visible compared to the first version. 
 
 ## Installation
 
