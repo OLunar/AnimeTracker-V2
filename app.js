@@ -1,3 +1,4 @@
+// Register the service worker
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
         .then(registration => {
@@ -8,31 +9,50 @@ if ('serviceWorker' in navigator) {
         });
 }
 
+// Document ready function
 document.addEventListener('DOMContentLoaded', function() {
     M.updateTextFields();
     M.Modal.init(document.querySelectorAll('.modal'));
     M.FormSelect.init(document.querySelectorAll('select'));
 
+    // Initialize tabs
+    M.Tabs.init(document.querySelectorAll('.tabs'));
+
     // Load anime list from local storage
     const animeList = JSON.parse(localStorage.getItem('animeList')) || [];
-    animeList.forEach(anime => addAnimeCard(anime.name, anime.thumbnail, anime.status));
+    animeList.forEach(anime => addAnimeCard(anime.name, anime.thumbnail, anime.status)); 
+
+    // Add click event listener to add-anime button
+    document.getElementById('add-anime-btn').addEventListener('click', () => {
+        const animeName = document.getElementById('anime-name').value;
+        const animeThumbnail = 'placeholder-image.png'; // Placeholder image for now
+        if (animeName) {
+            addAnimeCard(animeName, animeThumbnail, '');
+            // Save to local storage
+            const animeList = JSON.parse(localStorage.getItem('animeList')) || [];
+            animeList.push({ name: animeName, thumbnail: animeThumbnail, status: '' });
+            localStorage.setItem('animeList', JSON.stringify(animeList));
+
+            document.getElementById('anime-name').value = ''; // Clear the input field
+        }
+    });
 });
 
-document.getElementById('add-anime-btn').addEventListener('click', () => {
-    const animeName = document.getElementById('anime-name').value;
-    const animeThumbnail = 'placeholder.jpg'; // Placeholder image for now
-    if (animeName) {
-        addAnimeCard(animeName, animeThumbnail, '');
-
-        // Save to local storage
-        const animeList = JSON.parse(localStorage.getItem('animeList')) || [];
-        animeList.push({ name: animeName, thumbnail: animeThumbnail, status: '' });
-        localStorage.setItem('animeList', JSON.stringify(animeList));
-
-        document.getElementById('anime-name').value = ''; // Clear the input field
-    }
+// Filter by category
+document.querySelectorAll('.tabs a').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const category = tab.getAttribute('href').substring(1);
+        document.querySelectorAll('.card').forEach(card => {
+            if (category === 'all' || card.classList.contains(category)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
 });
 
+// Function to add an anime card
 function addAnimeCard(name, thumbnail, status) {
     const animeList = document.getElementById('anime-list');
     const animeCard = document.createElement('div');
@@ -49,6 +69,8 @@ function addAnimeCard(name, thumbnail, status) {
             </div>
         </div>
     `;
+    
+    // Add event listener for status update
     animeCard.querySelector('.card').addEventListener('click', () => {
         const modal = M.Modal.getInstance(document.getElementById('status-modal'));
         modal.open();
@@ -68,6 +90,7 @@ function addAnimeCard(name, thumbnail, status) {
         };
     });
 
+    // Add event listener for removing anime card
     animeCard.querySelector('.remove-btn').addEventListener('click', (event) => {
         event.stopPropagation(); // Prevent triggering the card click event
         animeCard.remove();
