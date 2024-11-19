@@ -64,3 +64,4 @@ This project uses firebase Firestor for online data storage. When the app is onl
     messagingSenderId: "YOUR_MESSAGING_SENDER_ID", 
     appId: "YOUR_APP_ID" 
     };# AnimeWatchlist-V2.1
+# AnimeWatchlist-V2.1.1
